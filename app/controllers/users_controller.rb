@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     end
 
     def edit
+        if current_user != @user
+            flash[:alert] = "You can only edit/delete your own account"
+            redirect_to @user
+        end
     end
 
     def create
